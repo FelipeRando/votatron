@@ -10,9 +10,12 @@ scrape_configs:
   - job_name: prometheus
     static_configs:
       - targets: ['localhost:9090']
-
+  
   - job_name: votatron
     scrape_interval: 10s
     static_configs:
-      - targets: ['localhost:2112']
+      - targets: ['localhost:2111','localhost:2112','localhost:2113']
+
+  
+
 
