@@ -222,7 +222,7 @@
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
-      "prefixFontSize": "50%",
+      "prefixFontSize": "80%",
       "rangeMaps": [
         {
           "from": "null",
@@ -250,7 +250,7 @@
       "timeShift": null,
       "title": "Workers",
       "type": "singlestat",
-      "valueFontSize": "80%",
+      "valueFontSize": "200%",
       "valueMaps": [
         {
           "op": "=",
@@ -423,7 +423,7 @@
       "timeShift": null,
       "title": "Total Votos",
       "type": "singlestat",
-      "valueFontSize": "80%",
+      "valueFontSize": "150%",
       "valueMaps": [
         {
           "op": "=",
@@ -472,5 +472,5 @@
   "timezone": "",
   "title": "votatron",
   "uid": "gwu3mkTGk",
-  "version": 13
+  "version": 15
 }
