@@ -16,6 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 1,
+  "iteration": 1607963827838,
   "links": [],
   "panels": [
     {
@@ -107,70 +108,82 @@
       }
     },
     {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
+      "columns": [],
+      "datasource": null,
+      "fontSize": "100%",
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 10,
+        "w": 4,
         "x": 0,
         "y": 8
       },
       "id": 8,
-      "links": [],
-      "options": {
-        "fieldOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "defaults": {
-            "mappings": [
-              {
-                "id": 0,
-                "op": "=",
-                "text": "N/A",
-                "type": 1,
-                "value": "null"
-              }
-            ],
-            "max": 1,
-            "min": 0,
-            "nullValueMode": "connected",
-            "thresholds": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ],
-            "unit": "none"
-          },
-          "override": {},
-          "values": false
-        },
-        "orientation": "horizontal",
-        "showThresholdLabels": false,
-        "showThresholdMarkers": false
+      "options": {},
+      "pageSize": null,
+      "showHeader": true,
+      "sort": {
+        "col": 2,
+        "desc": true
       },
-      "pluginVersion": "6.5.0",
+      "styles": [
+        {
+          "alias": "Time",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "hidden"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": "job",
+          "thresholds": [],
+          "type": "hidden",
+          "unit": "short"
+        },
+        {
+          "alias": "",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Value",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        }
+      ],
       "targets": [
         {
-          "expr": "prometheus_target_scrape_pool_sync_total{instance=\"localhost:9090\",job=\"prometheus\",scrape_job=\"votatron\"}",
-          "instant": false,
+          "expr": "increase(votatron_processed_votes_total[24h])",
+          "format": "table",
+          "instant": true,
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Scrapers",
-      "type": "gauge"
+      "title": "Worker/Votes",
+      "transform": "table",
+      "type": "table"
     },
     {
       "cacheTimeout": null,
       "colorBackground": false,
-      "colorPrefix": false,
-      "colorValue": true,
+      "colorValue": false,
       "colors": [
         "#299c46",
-        "#73BF69",
+        "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
       "datasource": null,
@@ -183,12 +196,12 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
+        "h": 4,
+        "w": 5,
+        "x": 4,
         "y": 8
       },
-      "id": 4,
+      "id": 10,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -206,8 +219,7 @@
       "nullPointMode": "connected",
       "nullText": null,
       "options": {},
-      "pluginVersion": "6.5.0",
-      "postfix": " votos",
+      "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
       "prefixFontSize": "50%",
@@ -229,16 +241,14 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(increase(votatron_processed_votes_total[72h]))",
-          "instant": true,
-          "intervalFactor": 1,
+          "expr": "sum(prometheus_target_scrape_pool_targets)-1",
           "refId": "A"
         }
       ],
       "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Total Votos",
+      "title": "Workers",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
@@ -248,7 +258,7 @@
           "value": "null"
         }
       ],
-      "valueName": "total"
+      "valueName": "avg"
     },
     {
       "aliasColors": {},
@@ -259,10 +269,10 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 7,
-        "w": 24,
-        "x": 0,
-        "y": 16
+        "h": 10,
+        "w": 15,
+        "x": 9,
+        "y": 8
       },
       "hiddenSeries": false,
       "id": 2,
@@ -335,6 +345,93 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorPrefix": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "#73BF69",
+        "#d44a3a"
+      ],
+      "datasource": null,
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 4,
+        "y": 12
+      },
+      "id": 4,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "pluginVersion": "6.5.0",
+      "postfix": " votos",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "sum(increase(votatron_processed_votes_total[48h]))",
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total Votos",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "total"
     }
   ],
   "refresh": "5s",
@@ -342,11 +439,21 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "datasource": "Prometheus",
+        "filters": [],
+        "hide": 0,
+        "label": "",
+        "name": "Filters",
+        "skipUrlSync": false,
+        "type": "adhoc"
+      }
+    ]
   },
   "time": {
-    "from": "2020-11-11T20:26:55.895Z",
-    "to": "2020-11-12T20:26:55.895Z"
+    "from": "now-24h",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -365,5 +472,5 @@
   "timezone": "",
   "title": "votatron",
   "uid": "gwu3mkTGk",
-  "version": 7
+  "version": 13
 }

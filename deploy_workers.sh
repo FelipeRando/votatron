@@ -1,5 +1,5 @@
-VOTING_ID=
-ALTERNATIVE_ID=
+VOTING_ID=$1
+ALTERNATIVE_ID=$2
 ZONES=("us-central1-a" "us-central1-b" "us-central1-c" "us-west1-a" "us-west1-b" "us-west1-c" "us-east1-b" "us-east1-c" "us-east1-d")
 
 deploy_machine(){
